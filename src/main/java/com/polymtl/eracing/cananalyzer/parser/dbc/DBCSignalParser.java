@@ -1,5 +1,8 @@
 package com.polymtl.eracing.cananalyzer.parser.dbc;
 
+import org.jparsec.Parser;
+import org.jparsec.Scanners;
+
 /**
  * Exercise:
  * <p>
@@ -14,4 +17,9 @@ package com.polymtl.eracing.cananalyzer.parser.dbc;
  * @link http://socialledge.com/sjsu/index.php/DBC_Format#Simple_DBC_Message
  */
 public class DBCSignalParser {
+    /**
+     * This parser detects and consumes the string "SG_".
+     */
+    private final static Parser<Void> PARSER_SG_PREFIX = Scanners.string("SG_");
+
 }
