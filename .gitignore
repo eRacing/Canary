@@ -1,2 +1,8 @@
 # intellij build directory
 out/
+
+# intellij unimportant files
+.idea/workspace.xml
+
+# gradle temporary folder
+.gradle/
