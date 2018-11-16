@@ -42,12 +42,14 @@ public class DBCNodesTest {
         /* invalid prefix */
         try {
             DBCNodes.PARSER.parse("B_: DEBUG MOTOR SENSOR");
+            assertTrue(false);
         } catch (ParserException e) {
         }
 
         /* missing colon */
         try {
             DBCNodes.PARSER.parse("B_ DEBUG MOTOR SENSOR");
+            assertTrue(false);
         } catch (ParserException e) {
         }
     }
