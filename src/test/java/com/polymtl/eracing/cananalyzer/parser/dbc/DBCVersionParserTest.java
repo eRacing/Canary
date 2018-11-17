@@ -5,29 +5,29 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class DBCVersionTest {
+public class DBCVersionParserTest {
     @Test
     public void testParser() {
         String version;
 
         /* single space */
-        version = DBCVersion.PARSER.parse("VERSION \"1.2.3\"");
+        version = DBCVersionParser.PARSER.parse("VERSION \"1.2.3\"");
         assertEquals("1.2.3", version);
 
         /* multiple spaces */
-        version = DBCVersion.PARSER.parse("VERSION \"1.2.3\"");
+        version = DBCVersionParser.PARSER.parse("VERSION \"1.2.3\"");
         assertEquals("1.2.3", version);
 
         /* missing quote left  */
         try {
-            DBCVersion.PARSER.parse("VERSION 1.2.3\"");
+            DBCVersionParser.PARSER.parse("VERSION 1.2.3\"");
             assertTrue(false);
         } catch (ParserException e) {
         }
 
         /* missing quote right  */
         try {
-            DBCVersion.PARSER.parse("VERSION \"1.2.3");
+            DBCVersionParser.PARSER.parse("VERSION \"1.2.3");
             assertTrue(false);
         } catch (ParserException e) {
         }

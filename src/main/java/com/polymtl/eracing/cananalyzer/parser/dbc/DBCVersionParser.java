@@ -7,7 +7,7 @@ import org.jparsec.Scanners;
 /**
  * This class contains a parser for detecting the version of the format.
  */
-final public class DBCVersion {
+final public class DBCVersionParser {
     /**
      * This parser detects and consumes the prefix for the version.
      */
