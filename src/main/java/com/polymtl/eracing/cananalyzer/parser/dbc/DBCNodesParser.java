@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * This class contains a parser the detecting the nodes.
  */
-final public class DBCNodes {
+final public class DBCNodesParser {
     /**
      * This parser detects and consumes the prefix for the nodes.
      */

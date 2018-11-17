@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DBCNodesTest {
+public class DBCNodesParserTest {
     @Test
     public void testParser() {
         List<String> nodes;
@@ -20,35 +20,35 @@ public class DBCNodesTest {
         expected.add("SENSOR");
 
         /* valid string */
-        nodes = DBCNodes.PARSER.parse("BU_: DEBUG MOTOR SENSOR");
+        nodes = DBCNodesParser.PARSER.parse("BU_: DEBUG MOTOR SENSOR");
         assertEquals(expected, nodes);
 
         /* valid string */
-        nodes = DBCNodes.PARSER.parse("BU_ : DEBUG MOTOR SENSOR");
+        nodes = DBCNodesParser.PARSER.parse("BU_ : DEBUG MOTOR SENSOR");
         assertEquals(expected, nodes);
 
         /* valid string */
-        nodes = DBCNodes.PARSER.parse("BU_  : DEBUG MOTOR SENSOR");
+        nodes = DBCNodesParser.PARSER.parse("BU_  : DEBUG MOTOR SENSOR");
         assertEquals(expected, nodes);
 
         /* valid string */
-        nodes = DBCNodes.PARSER.parse("BU_ :   DEBUG MOTOR SENSOR");
+        nodes = DBCNodesParser.PARSER.parse("BU_ :   DEBUG MOTOR SENSOR");
         assertEquals(expected, nodes);
 
         /* valid string */
-        nodes = DBCNodes.PARSER.parse("BU_    :      DEBUG   MOTOR    SENSOR");
+        nodes = DBCNodesParser.PARSER.parse("BU_    :      DEBUG   MOTOR    SENSOR");
         assertEquals(expected, nodes);
 
         /* invalid prefix */
         try {
-            DBCNodes.PARSER.parse("B_: DEBUG MOTOR SENSOR");
+            DBCNodesParser.PARSER.parse("B_: DEBUG MOTOR SENSOR");
             assertTrue(false);
         } catch (ParserException e) {
         }
 
         /* missing colon */
         try {
-            DBCNodes.PARSER.parse("B_ DEBUG MOTOR SENSOR");
+            DBCNodesParser.PARSER.parse("B_ DEBUG MOTOR SENSOR");
             assertTrue(false);
         } catch (ParserException e) {
         }
