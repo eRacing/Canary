@@ -27,29 +27,6 @@ import java.util.List;
  * @link http://socialledge.com/sjsu/index.php/DBC_Format#Simple_DBC_Message
  */
 public class DBCSignalParser {
-    /**
-     * Method that parses a String that should hold a DBC signal.
-     * @param source A String that should contain a DBC signal.
-     * @return A DBCSignal object parsed from the source.
-     */
-  /*  public static DBCSignal parseSignal(String source) {
-        Object[] signalParameters = PARSER_SIGNAL.parse(source);
-        return DBCSignal.createInstance(signalParameters[2].toString(), (Integer) signalParameters[6], (Integer) signalParameters[8], (ByteOrder) signalParameters[10]
-                , (Signedness) signalParameters[11], (EitherIntFloat) signalParameters[14], (EitherIntFloat) signalParameters[16]
-                , (EitherIntFloat) signalParameters[20], (EitherIntFloat) signalParameters[22], signalParameters[25].toString(), (List<String>) signalParameters[27]);
-    }
-    */
-
-    public static DBCSignal parseSignal(Object[] signalParameters) {
-        return DBCSignal.createInstance(signalParameters[2].toString(), (Integer) signalParameters[6], (Integer) signalParameters[8], (ByteOrder) signalParameters[10]
-                , (Signedness) signalParameters[11], (EitherIntFloat) signalParameters[14], (EitherIntFloat) signalParameters[16]
-                , (EitherIntFloat) signalParameters[20], (EitherIntFloat) signalParameters[22], signalParameters[25].toString(), (List<String>) signalParameters[27]);
-    }
-
-    public static Object[] parseMessage(String source) {
-        Object[] messageParameters = PARSER_MESSAGE.parse(source);
-        return messageParameters;
-    }
 
     /**
      * This parser detects and consumes the string "SG_".
@@ -117,9 +94,4 @@ public class DBCSignalParser {
             ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES).map(s -> DBCSignal.createInstance((String) s[2], (Integer) s[6], (Integer) s[8], (ByteOrder) s[10]
             , (Signedness) s[11], (EitherIntFloat) s[14]
             , (EitherIntFloat) s[16], (EitherIntFloat) s[20], (EitherIntFloat) s[22], (String) s[25], (List<String>) s[27]));
-
-    private static final Parser<Void> PARSER_BO_PREFIX = Parsers.or(CommonParser.SPACES.followedBy(Scanners.string("BO_")), Scanners.string("BO_"));
-    private static final Parser<Object[]> PARSER_MESSAGE = Parsers.array(PARSER_BO_PREFIX, CommonParser.SPACE, CommonParser.INTEGER, CommonParser.SPACE, Terminals.Identifier.PARSER
-            , CommonParser.COLON, CommonParser.SPACE, CommonParser.INTEGER, CommonParser.SPACE, Terminals.Identifier.PARSER, PARSER_SIGNAL.many());
-
 }
