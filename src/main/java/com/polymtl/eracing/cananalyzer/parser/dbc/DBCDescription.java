@@ -93,7 +93,7 @@ public class DBCDescription {
     /**
      * This enumeration defines the type of description possible in a DBC file.
      */
-    private enum DescriptionType {
+    public enum DescriptionType {
         /**
          * A description of the database.
          */
@@ -110,5 +110,50 @@ public class DBCDescription {
          * A description of a signal.
          */
         SIGNAL
+    }
+
+    /**
+     * This method returns the type of the description.
+     *
+     * @return The type of the description.
+     */
+    public DescriptionType getType() {
+        return fType;
+    }
+
+    /**
+     * This method returns the name of the node if present.
+     *
+     * @return The name of the node.
+     */
+    public String getNodeName() {
+        return fNode;
+    }
+
+    /**
+     * This method returns the ID of the message if present.
+     *
+     * @return The ID of the message.
+     */
+    public Integer getMessageID() {
+        return fID;
+    }
+
+    /**
+     * This method returns the name of the signal if present.
+     *
+     * @return The name of the signal.
+     */
+    public String getSignalName() {
+        return fSignal;
+    }
+
+    /**
+     * This method returns the description.
+     *
+     * @return The description.
+     */
+    public String getDescription() {
+        return fDescription;
     }
 }
