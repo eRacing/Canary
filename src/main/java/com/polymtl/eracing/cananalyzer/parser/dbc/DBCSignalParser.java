@@ -3,7 +3,7 @@ package com.polymtl.eracing.cananalyzer.parser.dbc;
 import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
 import com.polymtl.eracing.cananalyzer.parser.CommonParser;
 import com.polymtl.eracing.cananalyzer.signal.ByteOrder;
-import com.polymtl.eracing.cananalyzer.signal.Signal;
+import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 import com.polymtl.eracing.cananalyzer.signal.Signedness;
 import org.jparsec.Parser;
 import org.jparsec.Parsers;
@@ -30,13 +30,25 @@ public class DBCSignalParser {
     /**
      * Method that parses a String that should hold a DBC signal.
      * @param source A String that should contain a DBC signal.
-     * @return A Signal object parsed from the source.
+     * @return A DBCSignal object parsed from the source.
      */
-    public static Signal parse(String source) {
+  /*  public static DBCSignal parseSignal(String source) {
         Object[] signalParameters = PARSER_SIGNAL.parse(source);
-        return new Signal(signalParameters[2].toString(), (Integer) signalParameters[6], (Integer) signalParameters[8], (ByteOrder) signalParameters[10]
+        return DBCSignal.createInstance(signalParameters[2].toString(), (Integer) signalParameters[6], (Integer) signalParameters[8], (ByteOrder) signalParameters[10]
                 , (Signedness) signalParameters[11], (EitherIntFloat) signalParameters[14], (EitherIntFloat) signalParameters[16]
                 , (EitherIntFloat) signalParameters[20], (EitherIntFloat) signalParameters[22], signalParameters[25].toString(), (List<String>) signalParameters[27]);
+    }
+    */
+
+    public static DBCSignal parseSignal(Object[] signalParameters) {
+        return DBCSignal.createInstance(signalParameters[2].toString(), (Integer) signalParameters[6], (Integer) signalParameters[8], (ByteOrder) signalParameters[10]
+                , (Signedness) signalParameters[11], (EitherIntFloat) signalParameters[14], (EitherIntFloat) signalParameters[16]
+                , (EitherIntFloat) signalParameters[20], (EitherIntFloat) signalParameters[22], signalParameters[25].toString(), (List<String>) signalParameters[27]);
+    }
+
+    public static Object[] parseMessage(String source) {
+        Object[] messageParameters = PARSER_MESSAGE.parse(source);
+        return messageParameters;
     }
 
     /**
@@ -94,15 +106,20 @@ public class DBCSignalParser {
     private static final Parser<List<String>> PARSER_NODES = Scanners.IDENTIFIER.followedBy(Parsers.or(CommonParser.COMMA, Parsers.EOF)).many();
 
     /**
-     * Parser that parses a whole Signal and returns and array of objects. Each non-null object is a signal parameter that will be used
-     * in the parse() method.
+     * Parser that parses a whole DBCSignal and returns and array of objects. Each non-null object is a signal parameter that will be used
+     * in the parseSignal() method.
      */
-    private final static Parser<Object[]> PARSER_SIGNAL = Parsers.array(PARSER_SG_PREFIX, CommonParser.SPACES, PARSER_SIGNAL_NAME
+    public final static Parser<DBCSignal> PARSER_SIGNAL = Parsers.array(PARSER_SG_PREFIX, CommonParser.SPACES, PARSER_SIGNAL_NAME
             ,CommonParser.SPACES, CommonParser.COLON, CommonParser.SPACES, CommonParser.INTEGER, CommonParser.PIPE, CommonParser.INTEGER
             ,CommonParser.AT, PARSER_BYTE_ORDER, PARSER_SIGNEDNESS, CommonParser.SPACES, CommonParser.PARENTHESIS_OPEN, CommonParser.INTEGER_OR_FLOAT
             ,CommonParser.COMMA, CommonParser.INTEGER_OR_FLOAT, CommonParser.PARENTHESIS_CLOSE, CommonParser.SPACES, CommonParser.BRACKET_OPEN
             ,CommonParser.INTEGER_OR_FLOAT, CommonParser.PIPE, CommonParser.INTEGER_OR_FLOAT, CommonParser.BRACKET_CLOSE, CommonParser.SPACES
-            ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES);
+            ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES).map(s -> DBCSignal.createInstance((String) s[2], (Integer) s[6], (Integer) s[8], (ByteOrder) s[10]
+            , (Signedness) s[11], (EitherIntFloat) s[14]
+            , (EitherIntFloat) s[16], (EitherIntFloat) s[20], (EitherIntFloat) s[22], (String) s[25], (List<String>) s[27]));
 
+    private static final Parser<Void> PARSER_BO_PREFIX = Parsers.or(CommonParser.SPACES.followedBy(Scanners.string("BO_")), Scanners.string("BO_"));
+    private static final Parser<Object[]> PARSER_MESSAGE = Parsers.array(PARSER_BO_PREFIX, CommonParser.SPACE, CommonParser.INTEGER, CommonParser.SPACE, Terminals.Identifier.PARSER
+            , CommonParser.COLON, CommonParser.SPACE, CommonParser.INTEGER, CommonParser.SPACE, Terminals.Identifier.PARSER, PARSER_SIGNAL.many());
 
 }

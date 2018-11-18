@@ -2,7 +2,7 @@ package com.polymtl.eracing.cananalyzer.parser;
 
 import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
 import com.polymtl.eracing.cananalyzer.parser.dbc.DBCSignalParser;
-import com.polymtl.eracing.cananalyzer.signal.Signal;
+import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 import org.jparsec.error.ParserException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -143,8 +143,8 @@ public class CommonParserTest {
 
     @Test
     public void testSignalParser() {
-        Signal signal;
+        DBCSignal signal;
 
-        signal = DBCSignalParser.parse(" SG_ IO_DEBUG_test_unsigned : 0|8@1+ (1,0) [0|10] \"km/h\" DBG,TCS");
+       // signal = DBCSignalParser.parseSignal(" SG_ IO_DEBUG_test_unsigned : 0|8@1+ (1,0) [0|10] \"km/h\" DBG,TCS");
     }
 }

@@ -63,6 +63,16 @@ public class CommonParser {
     public final static Parser<Integer> INTEGER = Scanners.INTEGER.map(s -> Integer.parseInt(s));
 
     /**
+     * This parser detects and consumes a newline character.
+     */
+    public final static Parser<Void> NEWLINE = Scanners.isChar('\n');
+
+    /**
+     * This parser detects and consumes a newline or a newline preceded by spaces. Used to mark the end of a statement such as a signal or message.
+     */
+    public final static Parser<Void> ENDLINE = Parsers.or(NEWLINE, SPACES.followedBy(NEWLINE));
+
+    /**
      * This parser detects and returns number that can possibly be an integer or a floating point. If the content isn't
      * an integer number or a floating point number, the parser will fail before creating the Either object.
      *
