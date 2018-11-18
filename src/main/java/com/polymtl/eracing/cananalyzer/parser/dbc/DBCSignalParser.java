@@ -80,7 +80,7 @@ public class DBCSignalParser {
     /**
      * Parser that detects and consumes the "DBG" suffix.
      */
-    private static final Parser<List<String>> PARSER_NODES = Scanners.IDENTIFIER.followedBy(Parsers.or(CommonParser.COMMA, Parsers.EOF)).many();
+    private static final Parser<String> PARSER_NODES = Scanners.IDENTIFIER;
 
     /**
      * Parser that parses a whole DBCSignal and returns and array of objects. Each non-null object is a signal parameter that will be used
@@ -91,7 +91,7 @@ public class DBCSignalParser {
             ,CommonParser.AT, PARSER_BYTE_ORDER, PARSER_SIGNEDNESS, CommonParser.SPACES, CommonParser.PARENTHESIS_OPEN, CommonParser.INTEGER_OR_FLOAT
             ,CommonParser.COMMA, CommonParser.INTEGER_OR_FLOAT, CommonParser.PARENTHESIS_CLOSE, CommonParser.SPACES, CommonParser.BRACKET_OPEN
             ,CommonParser.INTEGER_OR_FLOAT, CommonParser.PIPE, CommonParser.INTEGER_OR_FLOAT, CommonParser.BRACKET_CLOSE, CommonParser.SPACES
-            ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES).map(s -> DBCSignal.createInstance((String) s[2], (Integer) s[6], (Integer) s[8], (ByteOrder) s[10]
+            ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES.followedBy(Parsers.or(CommonParser.COMMA, CommonParser.ENDLINE)).many()).map(s -> DBCSignal.createInstance((String) s[2], (Integer) s[6], (Integer) s[8], (ByteOrder) s[10]
             , (Signedness) s[11], (EitherIntFloat) s[14]
             , (EitherIntFloat) s[16], (EitherIntFloat) s[20], (EitherIntFloat) s[22], (String) s[25], (List<String>) s[27]));
 }
