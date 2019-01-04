@@ -1,7 +1,7 @@
-package com.polymtl.eracing.cananalyzer.parser.dbc;
+package com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.dbc;
 
+import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.CommonParser;
 import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
-import com.polymtl.eracing.cananalyzer.parser.CommonParser;
 import com.polymtl.eracing.cananalyzer.signal.ByteOrder;
 import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 import com.polymtl.eracing.cananalyzer.signal.Signedness;
@@ -87,10 +87,10 @@ public class DBCSignalParser {
      * in the parseSignal() method.
      */
     public final static Parser<DBCSignal> PARSER_SIGNAL = Parsers.array(PARSER_SG_PREFIX, CommonParser.SPACES, PARSER_SIGNAL_NAME
-            ,CommonParser.SPACES, CommonParser.COLON, CommonParser.SPACES, CommonParser.INTEGER, CommonParser.PIPE, CommonParser.INTEGER
-            ,CommonParser.AT, PARSER_BYTE_ORDER, PARSER_SIGNEDNESS, CommonParser.SPACES, CommonParser.PARENTHESIS_OPEN, CommonParser.INTEGER_OR_FLOAT
-            ,CommonParser.COMMA, CommonParser.INTEGER_OR_FLOAT, CommonParser.PARENTHESIS_CLOSE, CommonParser.SPACES, CommonParser.BRACKET_OPEN
-            ,CommonParser.INTEGER_OR_FLOAT, CommonParser.PIPE, CommonParser.INTEGER_OR_FLOAT, CommonParser.BRACKET_CLOSE, CommonParser.SPACES
+            , CommonParser.SPACES, CommonParser.COLON, CommonParser.SPACES, CommonParser.INTEGER, CommonParser.PIPE, CommonParser.INTEGER
+            , CommonParser.AT, PARSER_BYTE_ORDER, PARSER_SIGNEDNESS, CommonParser.SPACES, CommonParser.PARENTHESIS_OPEN, CommonParser.INTEGER_OR_FLOAT
+            , CommonParser.COMMA, CommonParser.INTEGER_OR_FLOAT, CommonParser.PARENTHESIS_CLOSE, CommonParser.SPACES, CommonParser.BRACKET_OPEN
+            , CommonParser.INTEGER_OR_FLOAT, CommonParser.PIPE, CommonParser.INTEGER_OR_FLOAT, CommonParser.BRACKET_CLOSE, CommonParser.SPACES
             ,PARSER_UNITS, CommonParser.SPACES, PARSER_NODES).map(s -> DBCSignal.createInstance((String) s[2], (Integer) s[6], (Integer) s[8], (ByteOrder) s[10]
             , (Signedness) s[11], (EitherIntFloat) s[14]
             , (EitherIntFloat) s[16], (EitherIntFloat) s[20], (EitherIntFloat) s[22], (String) s[25], (List<String>) s[27]));

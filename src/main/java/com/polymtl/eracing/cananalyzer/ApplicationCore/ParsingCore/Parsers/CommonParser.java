@@ -1,4 +1,4 @@
-package com.polymtl.eracing.cananalyzer.parser;
+package com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers;
 
 import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
 import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;

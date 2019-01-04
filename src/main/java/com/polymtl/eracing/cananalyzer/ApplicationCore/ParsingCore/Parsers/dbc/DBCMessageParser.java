@@ -1,6 +1,6 @@
-package com.polymtl.eracing.cananalyzer.parser.dbc;
+package com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.dbc;
 
-import com.polymtl.eracing.cananalyzer.parser.CommonParser;
+import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.CommonParser;
 import com.polymtl.eracing.cananalyzer.signal.DBCMessage;
 import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 import org.jparsec.Parser;

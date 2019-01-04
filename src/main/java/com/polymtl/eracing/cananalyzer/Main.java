@@ -1,6 +1,7 @@
 package com.polymtl.eracing.cananalyzer;
 
-import com.polymtl.eracing.cananalyzer.parser.dbc.DBCSignalParser;
+import com.polymtl.eracing.cananalyzer.ApplicationCore.DriversCore.PEAKUSBDriver;
+import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.dbc.DBCSignalParser;
 import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 
 public class Main {
@@ -11,5 +12,7 @@ public class Main {
        // DBCSignal signal = DBCSignalParser.PARSER_SIGNAL.parse(testString2);
         DBCSignal signal = DBCSignalParser.PARSER_SIGNAL.parse(testString2);
         System.out.println(signal);
+        PEAKUSBDriver test = new PEAKUSBDriver();
+        test.read();
     }
 }

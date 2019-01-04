@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="PCANBasic">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../CAN/PCAN_Basic_API/Samples/JAVA/java" />
+    </SOURCES>
+  </library>
+</component>
