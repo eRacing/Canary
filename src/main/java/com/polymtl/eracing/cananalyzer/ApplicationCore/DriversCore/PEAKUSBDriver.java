@@ -26,6 +26,16 @@ public class PEAKUSBDriver extends AbsDriver {
     }
 
     /**
+     * Writes the message to the CAN and returns if write was successful.
+     * @param message The message to write.
+     * @return True if the message was sent.
+     */
+    @Override
+    public boolean write(CANMessage message) {
+        return f_can.Write(TPCANHandle.PCAN_USBBUS1, new TPCANMsg(message.getId(), (byte) 5, message.getMsgLength(), message.getData())) == TPCANStatus.PCAN_ERROR_OK;
+    }
+
+    /**
      * Uninitializes the can channel used.
      */
     @Override
