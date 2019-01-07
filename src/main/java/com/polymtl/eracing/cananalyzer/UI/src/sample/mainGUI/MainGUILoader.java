@@ -1,4 +1,4 @@
-package sample;
+package sample.mainGUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class MainGUI extends Application {
+public class MainGUILoader extends Application {
 
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/mainGUI/mainGUI.fxml"));
         primaryStage.setTitle("CANary");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();

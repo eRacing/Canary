@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane prefHeight="544.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainGUI.MainGUIController">
+   <top>
+      <MenuBar fx:id="topMenu" prefHeight="0.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="new..." />
+                  <MenuItem mnemonicParsing="false" text="open..." />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <TitledPane animated="false" collapsible="false" text="Data navigator" BorderPane.alignment="CENTER">
+         <content>
+            <TreeView fx:id="dataNavigator" prefHeight="256.0" prefWidth="148.0" />
+         </content>
+      </TitledPane>
+   </left>
+   <bottom>
+      <TitledPane collapsible="false" text="data ListView" BorderPane.alignment="CENTER">
+         <content>
+            <ListView fx:id="dataListView" prefHeight="243.0" prefWidth="688.0" />
+         </content>
+      </TitledPane>
+   </bottom>
+   <center>
+      <Pane fx:id="chartView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="newVisualButton" layoutX="202.0" layoutY="109.0" mnemonicParsing="false" onAction="#startNewVisualisation" text="new visualisation...">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="existingButton" layoutX="219.0" layoutY="147.0" mnemonicParsing="false" onAction="#openExistingFile" text="existing file...">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
