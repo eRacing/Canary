@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.listView.ListViewController">
+   <children>
+      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+          <TableColumn fx:id="txColumn" prefWidth="75.0" text="Tx/Rx" />
+            <TableColumn fx:id="channelColumn" prefWidth="75.0" text="Channel" />
+            <TableColumn fx:id="messageColumn" prefWidth="75.0" text="Message" />
+            <TableColumn fx:id="DLCColumn" prefWidth="75.0" text="DLC" />
+            <TableColumn fx:id="byteColumn" prefWidth="212.0" text="Data Byte(s)" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
