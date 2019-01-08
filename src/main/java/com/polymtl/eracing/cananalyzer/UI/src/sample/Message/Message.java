@@ -2,12 +2,12 @@ package sample.Message;
 
 public class Message {
 
-    private int channel;
-    private int DLC;
-    private String message;
-    private String bytes;
     private double timeStamp;
     private String TxRx;
+    private int channel;
+    private String message;
+    private int DLC;
+    private String bytes;
 
     public Message() {
         //Default

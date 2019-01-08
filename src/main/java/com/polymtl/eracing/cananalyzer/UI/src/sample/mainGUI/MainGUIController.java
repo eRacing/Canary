@@ -35,7 +35,7 @@ public class MainGUIController {
     @FXML
     void startNewVisualisation(ActionEvent event) throws IOException {
 
-        //testing
+        //loading new window
         Parent root = FXMLLoader.load(getClass().getResource("/sample/listView/listView.fxml"));
 
         Stage stage = new Stage();

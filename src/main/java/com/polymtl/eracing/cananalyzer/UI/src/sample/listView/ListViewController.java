@@ -1,9 +1,12 @@
 package sample.listView;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Message.Message;
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class ListViewController implements Initializable{
 
-    private ArrayList<Message> messages;
+    private ObservableList<Message> messages;
 
     @FXML
     TableView tableView;
@@ -39,30 +42,39 @@ public class ListViewController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         //creating test message list
-        messages = new ArrayList<Message>();
+        messages = FXCollections.observableArrayList();
+
+        //associates the columns to the attributes of Message, has to have the same name of attribute
+        initColumns();
+
+        tableView.setItems(messages);
+
+
+
         for(int i = 0; i < 10; i++){
-            messages.add(new Message(1, 0, ("message"+ i),"00 00 00 00", i, "tx"));
-
-            //adding the list to tableView
-
-            tableView.edit(0, timeColumn, Double.valueOf(messages.get(i).getTimeStamp()));
-            tableView.edit(1, txColumn, messages.get(i).getTimeStamp());
-            tableView.edit(2, channelColumn, messages.get(i).getTimeStamp());
-            tableView.edit(3, messageColumn, messages.get(i).getTimeStamp());
-            tableView.edit(4, DLCColumn, messages.get(i).getTimeStamp());
-            tableView.edit(5, byteColumn, messages.get(i).getTimeStamp());
+            addMessage(new Message(1, 0, ("message"+ i),"00 00 00 00", i, "tx"));
 
         }
 
-        tableView.getColumns().addAll(timeColumn,txColumn,channelColumn, messageColumn, DLCColumn, byteColumn);
+
 
 
 
     }
 
+    private void initColumns(){
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStamp"));
+        txColumn.setCellValueFactory(new PropertyValueFactory<>("TxRx"));
+        channelColumn.setCellValueFactory(new PropertyValueFactory<>("channel"));
+        messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+        DLCColumn.setCellValueFactory(new PropertyValueFactory<>("DLC"));
+        byteColumn.setCellValueFactory(new PropertyValueFactory<>("bytes"));
+    }
+
     public void addMessage(Message message){
 
-        messages.add(message);
+        //adding the list to tableView, automatically shows on the view
+        tableView.getItems().add(message);
 
     }
 

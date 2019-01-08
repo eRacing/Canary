@@ -14,7 +14,7 @@
             <TableColumn fx:id="channelColumn" prefWidth="75.0" text="Channel" />
             <TableColumn fx:id="messageColumn" prefWidth="75.0" text="Message" />
             <TableColumn fx:id="DLCColumn" prefWidth="75.0" text="DLC" />
-            <TableColumn fx:id="byteColumn" prefWidth="212.0" text="Data Byte(s)" />
+            <TableColumn fx:id="byteColumn" prefWidth="208.0" text="Data Byte(s)" />
         </columns>
       </TableView>
    </children>
