@@ -15,7 +15,7 @@ public class PEAKUSBDriver extends AbsDriver {
             System.out.println("Cannot initialize can API!");
         }
         // TODO: Find what handle, baudrate, type, and port to use
-        f_can.Initialize(TPCANHandle.PCAN_USBBUS1, TPCANBaudrate.PCAN_BAUD_1M, TPCANType.PCAN_TYPE_NONE, 0, (short) 0);
+        f_can.Initialize(TPCANHandle.PCAN_USBBUS1, TPCANBaudrate.PCAN_BAUD_500K, TPCANType.PCAN_TYPE_NONE, 0, (short) 0);
     }
 
     @Override
