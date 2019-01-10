@@ -2,9 +2,9 @@ package com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.dbc;
 
 import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.CommonParser;
 import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
-import com.polymtl.eracing.cananalyzer.signal.ByteOrder;
-import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
-import com.polymtl.eracing.cananalyzer.signal.Signedness;
+import com.polymtl.eracing.cananalyzer.model.signal.ByteOrder;
+import com.polymtl.eracing.cananalyzer.model.signal.DBCSignal;
+import com.polymtl.eracing.cananalyzer.model.signal.Signedness;
 import org.jparsec.Parser;
 import org.jparsec.Parsers;
 import org.jparsec.Scanners;

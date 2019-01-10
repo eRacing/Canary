@@ -1,4 +1,4 @@
-package com.polymtl.eracing.cananalyzer.signal;
+package com.polymtl.eracing.cananalyzer.model.signal;
 
 /**
  * This enumeration represents a signedness of a signal.

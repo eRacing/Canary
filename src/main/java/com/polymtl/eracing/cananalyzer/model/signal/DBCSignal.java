@@ -1,4 +1,4 @@
-package com.polymtl.eracing.cananalyzer.signal;
+package com.polymtl.eracing.cananalyzer.model.signal;
 
 import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
 
@@ -12,8 +12,8 @@ public class DBCSignal<T> {
     private String fName, fUnit;
     private Integer fStartBit, fSize;
     private T fScale, fOffset, fMin, fMax;
-    private com.polymtl.eracing.cananalyzer.signal.Signedness fSignedness;
-    private com.polymtl.eracing.cananalyzer.signal.ByteOrder fByteOrder;
+    private com.polymtl.eracing.cananalyzer.model.signal.Signedness fSignedness;
+    private com.polymtl.eracing.cananalyzer.model.signal.ByteOrder fByteOrder;
     private List<String> fNodes;
 
     /**
@@ -27,8 +27,8 @@ public class DBCSignal<T> {
      */
 
 
-    public DBCSignal(String name, Integer startBit, Integer size, com.polymtl.eracing.cananalyzer.signal.ByteOrder byteOrder,
-                     com.polymtl.eracing.cananalyzer.signal.Signedness signednes, T scale, T offset, T min, T max,
+    public DBCSignal(String name, Integer startBit, Integer size, com.polymtl.eracing.cananalyzer.model.signal.ByteOrder byteOrder,
+                     com.polymtl.eracing.cananalyzer.model.signal.Signedness signednes, T scale, T offset, T min, T max,
                      String unit, List<String> nodes) {
         fName = name;
         fStartBit = startBit;
@@ -59,8 +59,8 @@ public class DBCSignal<T> {
      * @param nodes
      * @return
      */
-    public static DBCSignal createInstance(String name, Integer startBit, Integer size, com.polymtl.eracing.cananalyzer.signal.ByteOrder byteOrder,
-                                           com.polymtl.eracing.cananalyzer.signal.Signedness signednes, EitherIntFloat scale, EitherIntFloat offset
+    public static DBCSignal createInstance(String name, Integer startBit, Integer size, com.polymtl.eracing.cananalyzer.model.signal.ByteOrder byteOrder,
+                                           com.polymtl.eracing.cananalyzer.model.signal.Signedness signednes, EitherIntFloat scale, EitherIntFloat offset
             , EitherIntFloat min, EitherIntFloat max, String unit, List<String> nodes) {
         // If there is a float parameter, then this is a FloatSignal
         if (scale.getLeft().equals(Optional.empty()) || offset.getLeft().equals(Optional.empty()) || min.getLeft().equals(Optional.empty())

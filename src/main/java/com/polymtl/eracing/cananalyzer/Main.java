@@ -2,7 +2,7 @@ package com.polymtl.eracing.cananalyzer;
 
 import com.polymtl.eracing.cananalyzer.ApplicationCore.DriversCore.PEAKUSBDriver;
 import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.dbc.DBCSignalParser;
-import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
+import com.polymtl.eracing.cananalyzer.model.signal.DBCSignal;
 
 public class Main {
     private final static String testString1 = "BO_ 500 IO_DEBUG: 4 IO\n  SG_ IO_DEBUG_test_unsigned : 0|8@1+ (1.2,0) [0|10] \"km/h\" DBG,TCS";

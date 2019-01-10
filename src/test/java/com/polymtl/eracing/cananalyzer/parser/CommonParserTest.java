@@ -2,7 +2,7 @@ package com.polymtl.eracing.cananalyzer.parser;
 
 import com.polymtl.eracing.cananalyzer.ApplicationCore.ParsingCore.Parsers.CommonParser;
 import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
-import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
+import com.polymtl.eracing.cananalyzer.model.signal.DBCSignal;
 import org.jparsec.error.ParserException;
 import org.junit.Rule;
 import org.junit.Test;

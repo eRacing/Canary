@@ -1,4 +1,4 @@
-package com.polymtl.eracing.cananalyzer.signal;
+package com.polymtl.eracing.cananalyzer.model.signal;
 
 import com.google.common.math.LongMath;
 

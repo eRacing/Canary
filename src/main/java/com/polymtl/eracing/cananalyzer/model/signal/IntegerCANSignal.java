@@ -1,4 +1,4 @@
-package com.polymtl.eracing.cananalyzer.signal;
+package com.polymtl.eracing.cananalyzer.model.signal;
 
 import java.nio.ByteOrder;
 
