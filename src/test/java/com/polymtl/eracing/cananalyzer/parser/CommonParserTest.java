@@ -142,9 +142,25 @@ public class CommonParserTest {
     }
 
     @Test
-    public void testSignalParser() {
-        DBCSignal signal;
+    public void testDoubleQuotedString() {
+        String content;
 
-       // signal = DBCSignalParser.parseSignal(" SG_ IO_DEBUG_test_unsigned : 0|8@1+ (1,0) [0|10] \"km/h\" DBG,TCS");
+        /* valid string */
+        content = CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world\"");
+        assertEquals("hello world", content);
+
+        /* missing quote left  */
+        try {
+            CommonParser.DOUBLE_QUOTED_STRING.parse("hello world\"");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* missing quote right  */
+        try {
+            CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
     }
 }

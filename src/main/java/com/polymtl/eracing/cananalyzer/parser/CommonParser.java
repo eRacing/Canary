@@ -132,4 +132,10 @@ public class CommonParser {
     public final static Parser<TupleNumber> NUMBER_TUPLE_BRACKETS = Parsers.sequence(
             BRACKET_OPEN, INTEGER_OR_FLOAT, SPACES, COMMA, SPACES, INTEGER_OR_FLOAT, BRACKET_CLOSE
             , (x1, x2, x3, x4, x5, x6, x7) -> new TupleNumber(x2, x6));
+
+    /**
+     * This parser detects and returns the content of a double quoted string.
+     */
+    public final static Parser<String> DOUBLE_QUOTED_STRING = Scanners.DOUBLE_QUOTE_STRING
+            .map(s -> s.substring(1, s.length() - 1));
 }
