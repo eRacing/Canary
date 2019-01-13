@@ -18,6 +18,51 @@ public class CommonParserTest {
     public final ExpectedException fThrown = ExpectedException.none();
 
     @Test
+    public void testSignedInteger() {
+        Integer number;
+
+        /* single digit number */
+        assertEquals(new Integer(2), CommonParser.SIGNED_INTEGER.parse("2"));
+
+        /* multiple digits number */
+        assertEquals(new Integer(234), CommonParser.SIGNED_INTEGER.parse("234"));
+
+        /* single digit number with sign */
+        assertEquals(new Integer(-2), CommonParser.SIGNED_INTEGER.parse("-2"));
+
+        /* multiple digits number with sign */
+        assertEquals(new Integer(-234), CommonParser.SIGNED_INTEGER.parse("-234"));
+
+        /* invalid input */
+        try {
+            CommonParser.SIGNED_INTEGER.parse("2-");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* invalid input */
+        try {
+            CommonParser.SIGNED_INTEGER.parse("234-");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* invalid input */
+        try {
+            CommonParser.SIGNED_INTEGER.parse("-2-");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* invalid input */
+        try {
+            CommonParser.SIGNED_INTEGER.parse("-234-");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+    }
+
+    @Test
     public void testNumberTupleParenthesis() {
         TupleNumber tuple;
 
@@ -147,14 +192,14 @@ public class CommonParserTest {
         content = CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world\"");
         assertEquals("hello world", content);
 
-        /* missing quote left  */
+        /* missing quote left */
         try {
             CommonParser.DOUBLE_QUOTED_STRING.parse("hello world\"");
             assertTrue(false);
         } catch (ParserException e) {
         }
 
-        /* missing quote right  */
+        /* missing quote right */
         try {
             CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world");
             assertTrue(false);
