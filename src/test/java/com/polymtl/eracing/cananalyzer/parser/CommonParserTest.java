@@ -1,6 +1,8 @@
 package com.polymtl.eracing.cananalyzer.parser;
 
+import com.polymtl.eracing.cananalyzer.functional.either.EitherIntFloat;
 import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
+import org.jparsec.Scanners;
 import org.jparsec.error.ParserException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,8 +21,6 @@ public class CommonParserTest {
 
     @Test
     public void testSignedInteger() {
-        Integer number;
-
         /* single digit number */
         assertEquals(new Integer(2), CommonParser.SIGNED_INTEGER.parse("2"));
 
@@ -60,6 +60,41 @@ public class CommonParserTest {
             assertTrue(false);
         } catch (ParserException e) {
         }
+    }
+
+    @Test
+    public void testIntegerOrFloat() {
+        EitherIntFloat number;
+
+        /* single digit integer number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("2");
+        assertTrue(number.getLeft().isPresent());
+        assertEquals(number.getLeft().get(), new Integer(2));
+
+        /* multiple digits integer number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("234");
+        assertTrue(number.getLeft().isPresent());
+        assertEquals(number.getLeft().get(), new Integer(234));
+
+        /* single digit negative integer number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("-2");
+        assertTrue(number.getLeft().isPresent());
+        assertEquals(number.getLeft().get(), new Integer(-2));
+
+        /* multiple digits negative integer number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("-234");
+        assertTrue(number.getLeft().isPresent());
+        assertEquals(number.getLeft().get(), new Integer(-234));
+
+        /* float number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("2.34");
+        assertTrue(number.getRight().isPresent());
+        assertEquals(number.getRight().get(), new Float(2.34), DELTA);
+
+        /* negative float number */
+        number = CommonParser.INTEGER_OR_FLOAT.parse("-2.34");
+        assertTrue(number.getRight().isPresent());
+        assertEquals(number.getRight().get(), new Float(-2.34), DELTA);
     }
 
     @Test

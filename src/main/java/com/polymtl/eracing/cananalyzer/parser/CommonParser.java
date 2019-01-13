@@ -5,7 +5,6 @@ import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
 import org.jparsec.Parser;
 import org.jparsec.Parsers;
 import org.jparsec.Scanners;
-import org.jparsec.pattern.Pattern;
 import org.jparsec.pattern.Patterns;
 
 public class CommonParser {
@@ -67,7 +66,7 @@ public class CommonParser {
     /**
      * This parser detects and returns a integer number.
      */
-    public final static Parser<Integer> INTEGER = Scanners.INTEGER.map(s -> Integer.parseInt(s));
+    public final static Parser<Integer> UNSIGNED_INTEGER = Scanners.INTEGER.map(s -> Integer.parseInt(s));
 
     /**
      * This parser detects and returns a signed integer.
@@ -81,7 +80,9 @@ public class CommonParser {
      *
      * @see EitherIntFloat
      */
-    public final static Parser<EitherIntFloat> INTEGER_OR_FLOAT = Scanners.DECIMAL.map(s -> EitherIntFloat.fromString(s));
+    public final static Parser<EitherIntFloat> INTEGER_OR_FLOAT = MINUS.optional(null)
+            .followedBy(Scanners.DECIMAL).source()
+            .map(s -> EitherIntFloat.fromString(s));
 
     /**
      * This parser detects and returns a tuple of two numbers surrounded by parenthesis. This can detect one of the
