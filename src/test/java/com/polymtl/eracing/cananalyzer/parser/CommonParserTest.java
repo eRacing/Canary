@@ -138,4 +138,27 @@ public class CommonParserTest {
         CommonParser.NUMBER_TUPLE_BRACKETS.parse("[1.3 4]");
         CommonParser.NUMBER_TUPLE_BRACKETS.parse("1,2");
     }
+
+    @Test
+    public void testDoubleQuotedString() {
+        String content;
+
+        /* valid string */
+        content = CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world\"");
+        assertEquals("hello world", content);
+
+        /* missing quote left  */
+        try {
+            CommonParser.DOUBLE_QUOTED_STRING.parse("hello world\"");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* missing quote right  */
+        try {
+            CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+    }
 }
