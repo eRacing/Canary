@@ -37,17 +37,10 @@ public class DBCValueTableParserTest {
             assertTrue(false);
         } catch (ParserException e) {
         }
-
-        /* missing space */
-        try {
-            DBCValueTableParser.PARSER.parse("VAL_TABLE 40 \"hello\"1337 \"world\" 823 \"haskell\"");
-            assertTrue(false);
-        } catch (ParserException e) {
-        }
-
+        
         /* missing quote */
         try {
-            DBCValueTableParser.PARSER.parse("VAL_TABLE 40 \"hello 1337 \"world\" 823 \"haskell\"");
+            DBCValueTableParser.PARSER.parse("VAL_TABLE_ 40 \"hello 1337 \"world\" 823 \"haskell\"");
             assertTrue(false);
         } catch (ParserException e) {
         }
