@@ -32,7 +32,7 @@ final public class DBCValueTableParser {
      * This parser detects and returns a definition.
      */
     private final static Parser<Tuple<Integer, String>> DEFINITION = Parsers.sequence(
-            CommonParser.INTEGER.followedBy(CommonParser.SPACES), DOUBLE_QUOTED_STRING, Tuple::new
+            CommonParser.UNSIGNED_INTEGER.followedBy(CommonParser.SPACES), DOUBLE_QUOTED_STRING, Tuple::new
     );
 
     /**
