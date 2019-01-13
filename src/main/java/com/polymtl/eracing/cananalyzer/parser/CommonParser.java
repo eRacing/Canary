@@ -14,6 +14,11 @@ public class CommonParser {
     public final static Parser<Void> SPACE = Scanners.isChar(' ');
 
     /**
+     * This parser detects and consumes a newline character.
+     */
+    public final static Parser<Void> NEWLINE = Scanners.isChar('\n');
+
+    /**
      * This parser detects and consumes multiple space characters.
      */
     public final static Parser<Void> SPACES = SPACE.skipMany();
@@ -137,4 +142,9 @@ public class CommonParser {
      */
     public final static Parser<String> DOUBLE_QUOTED_STRING = Scanners.DOUBLE_QUOTE_STRING
             .map(s -> s.substring(1, s.length() - 1));
+
+    /**
+     * This parser detects and consumes an empty line.
+     */
+    public final static Parser<Void> EMPTY_LINE = SPACES.followedBy(NEWLINE.skipMany());
 }
