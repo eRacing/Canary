@@ -5,7 +5,7 @@ import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
 import org.jparsec.Parser;
 import org.jparsec.Parsers;
 import org.jparsec.Scanners;
-import org.jparsec.Terminals;
+import org.jparsec.pattern.Patterns;
 
 public class CommonParser {
     /**
@@ -59,39 +59,20 @@ public class CommonParser {
     public final static Parser<Void> COMMA = Scanners.isChar(',');
 
     /**
-     * This parsers detects and returns a signed integer.
+     * This parser detects and consumes a minus character.
      */
-    public final static Parser<Integer> SIGNED_INTEGER = Scanners.isChar('-').next(Scanners.INTEGER).map(s -> Integer.parseInt('-' + s));
+    public final static Parser<Void> MINUS = Scanners.isChar('-');
 
     /**
-     * This parser detects and returns an integer number.
+     * This parser detects and returns a integer number.
      */
-    public final static Parser<Integer> INTEGER = Parsers.or(SIGNED_INTEGER, Scanners.INTEGER.map(s -> Integer.parseInt(s)));
+    public final static Parser<Integer> UNSIGNED_INTEGER = Scanners.INTEGER.map(s -> Integer.parseInt(s));
 
     /**
-     * This parser detects and returns a signed float.
+     * This parser detects and returns a signed integer.
      */
-    public final static Parser<Float> SIGNED_FLOAT = Scanners.isChar('-').next(Scanners.DECIMAL).map(s -> Float.parseFloat('-' + s));
-
-    /**
-     * This parsers detects and returns a float.
-     */
-    public final static Parser<Float> FLOAT = Parsers.or(SIGNED_FLOAT, Scanners.DECIMAL.map(s -> Float.parseFloat(s)));
-
-    /**
-     * This parser detects and consumes a newline character.
-     */
-    public final static Parser<Void> NEWLINE = Scanners.isChar('\n');
-
-    /**
-     * This parser detects and consumes the EOF character.
-     */
-    public final static Parser<Void> EOF = Parsers.EOF.cast();
-
-    /**
-     * This parser detects and consumes a newline or EOF character preceded or not by spaces. Used to mark end of statements.
-     */
-    public final static Parser<Void> ENDLINE = Parsers.or(NEWLINE, SPACES.followedBy(NEWLINE), EOF, SPACES.followedBy(EOF));
+    public final static Parser<Integer> SIGNED_INTEGER = Patterns.regex("-?\\d+")
+            .toScanner("signed integer").source().map(s -> Integer.parseInt(s));
 
     /**
      * This parser detects and returns number that can possibly be an integer or a floating point. If the content isn't
@@ -99,7 +80,9 @@ public class CommonParser {
      *
      * @see EitherIntFloat
      */
-    public final static Parser<EitherIntFloat> INTEGER_OR_FLOAT = Parsers.or(FLOAT.map(s -> EitherIntFloat.fromString(s.toString())), INTEGER.map(s -> EitherIntFloat.fromString(s.toString())));
+    public final static Parser<EitherIntFloat> INTEGER_OR_FLOAT = MINUS.optional(null)
+            .followedBy(Scanners.DECIMAL).source()
+            .map(s -> EitherIntFloat.fromString(s));
 
     /**
      * This parser detects and returns a tuple of two numbers surrounded by parenthesis. This can detect one of the
