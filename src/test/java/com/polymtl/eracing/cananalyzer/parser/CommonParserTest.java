@@ -109,17 +109,17 @@ public class CommonParserTest {
         assertEquals(tuple.getSecond().getLeft().get(), new Integer(4));
 
         /* test a tuple with a integer and a float  */
-        tuple = CommonParser.NUMBER_TUPLE_PARENTHESIS.parse("(1,4.4)");
+        tuple = CommonParser.NUMBER_TUPLE_PARENTHESIS.parse("(1,-4.4)");
         assertTrue(tuple.getFirst().getLeft().isPresent());
         assertTrue(tuple.getSecond().getRight().isPresent());
         assertEquals(tuple.getFirst().getLeft().get(), new Integer(1));
-        assertEquals(tuple.getSecond().getRight().get(), new Float(4.4), DELTA);
+        assertEquals(tuple.getSecond().getRight().get(), new Float(-4.4), DELTA);
 
         /* test a tuple with a float and a integer */
-        tuple = CommonParser.NUMBER_TUPLE_PARENTHESIS.parse("(1.3,4)");
+        tuple = CommonParser.NUMBER_TUPLE_PARENTHESIS.parse("(-1.3,4)");
         assertTrue(tuple.getFirst().getRight().isPresent());
         assertTrue(tuple.getSecond().getLeft().isPresent());
-        assertEquals(tuple.getFirst().getRight().get(), new Float(1.3), DELTA);
+        assertEquals(tuple.getFirst().getRight().get(), new Float(-1.3), DELTA);
         assertEquals(tuple.getSecond().getLeft().get(), new Integer(4));
 
         /* test a tuple with two floats */
@@ -184,17 +184,17 @@ public class CommonParserTest {
         assertEquals(tuple.getSecond().getLeft().get(), new Integer(4));
 
         /* test a tuple with two floats */
-        tuple = CommonParser.NUMBER_TUPLE_BRACKETS.parse("[1.3,4.4]");
+        tuple = CommonParser.NUMBER_TUPLE_BRACKETS.parse("[1.3,-4.4]");
         assertTrue(tuple.getFirst().getRight().isPresent());
         assertTrue(tuple.getSecond().getRight().isPresent());
         assertEquals(tuple.getFirst().getRight().get(), new Float(1.3), DELTA);
-        assertEquals(tuple.getSecond().getRight().get(), new Float(4.4), DELTA);
+        assertEquals(tuple.getSecond().getRight().get(), new Float(-4.4), DELTA);
 
         /* input with spaces */
-        tuple = CommonParser.NUMBER_TUPLE_BRACKETS.parse("[1,   4]");
+        tuple = CommonParser.NUMBER_TUPLE_BRACKETS.parse("[-1,   4]");
         assertTrue(tuple.getFirst().getLeft().isPresent());
         assertTrue(tuple.getSecond().getLeft().isPresent());
-        assertEquals(tuple.getFirst().getLeft().get(), new Integer(1));
+        assertEquals(tuple.getFirst().getLeft().get(), new Integer(-1));
         assertEquals(tuple.getSecond().getLeft().get(), new Integer(4));
 
         /* input with spaces */
