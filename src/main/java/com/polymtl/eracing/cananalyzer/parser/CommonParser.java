@@ -134,6 +134,22 @@ public class CommonParser {
             , (x1, x2, x3, x4, x5, x6, x7) -> new TupleNumber(x2, x6));
 
     /**
+     * This parser detects and returns a tuple of two numbers surrounded by brackets. This can detect one of the
+     * following:
+     * <ul>
+     * <li>[Integer|Integer]</li>
+     * <li>[Integer|Float]</li>
+     * <li>[Float|Integer]</li>
+     * <li>[Float|Float]</li>
+     * </ul>
+     *
+     * @see TupleNumber
+     */
+    public final static Parser<TupleNumber> NUMBER_TUPLE_BRACKETS_PIPE = Parsers.sequence(
+            BRACKET_OPEN, INTEGER_OR_FLOAT, SPACES, PIPE, SPACES, INTEGER_OR_FLOAT, BRACKET_CLOSE
+            , (x1, x2, x3, x4, x5, x6, x7) -> new TupleNumber(x2, x6));
+
+    /**
      * This parser detects and returns the content of a double quoted string.
      */
     public final static Parser<String> DOUBLE_QUOTED_STRING = Scanners.DOUBLE_QUOTE_STRING

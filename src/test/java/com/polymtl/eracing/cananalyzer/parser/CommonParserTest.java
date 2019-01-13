@@ -1,8 +1,6 @@
 package com.polymtl.eracing.cananalyzer.parser;
 
 import com.polymtl.eracing.cananalyzer.functional.tuple.TupleNumber;
-import com.polymtl.eracing.cananalyzer.parser.dbc.DBCSignalParser;
-import com.polymtl.eracing.cananalyzer.signal.DBCSignal;
 import org.jparsec.error.ParserException;
 import org.junit.Rule;
 import org.junit.Test;
