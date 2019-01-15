@@ -12,6 +12,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -44,28 +45,40 @@
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Add a database" />
+                     </tooltip></Button>
                         <Button mnemonicParsing="false" onAction="#disconnectButtonPressed" prefHeight="56.0" prefWidth="56.0" styleClass="DisconnectButton" stylesheets="@style.css">
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Disconnect" />
+                     </tooltip></Button>
                         <Button mnemonicParsing="false" onAction="#graphButtonPressed" prefHeight="56.0" prefWidth="56.0" styleClass="graphButton" stylesheets="@style.css">
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="New signal graph" />
+                     </tooltip></Button>
                           <ComboBox fx:id="driverButton" prefHeight="56.0" prefWidth="56.0" styleClass="driverButton" stylesheets="@style.css">
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></ComboBox>
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Select a driver" />
+                     </tooltip></ComboBox>
 
                     </children>
                 </HBox>
