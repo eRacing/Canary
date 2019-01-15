@@ -63,7 +63,7 @@ final public class DBCValueTableParser {
     /**
      * This class defines a DBC table of values.
      */
-    public static class DBCValueTable {
+    public static class DBCValueTable implements IDBCType {
         /**
          * The table of value.
          */
@@ -76,6 +76,11 @@ final public class DBCValueTableParser {
          */
         private DBCValueTable(Dictionary<Integer, String> table) {
             fTable = table;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
         }
     }
 }

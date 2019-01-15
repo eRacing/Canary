@@ -23,7 +23,7 @@ final public class DBCVersionParser {
     /**
      * This class defines the version of the DBC database.
      */
-    public static class DBCVersion {
+    public static class DBCVersion implements IDBCType {
         /**
          * The version of the database.
          */
@@ -36,6 +36,11 @@ final public class DBCVersionParser {
          */
         private DBCVersion(String version) {
             fVersion = version;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
         }
     }
 }

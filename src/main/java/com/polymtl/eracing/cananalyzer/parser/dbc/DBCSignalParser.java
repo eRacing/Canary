@@ -268,7 +268,7 @@ public class DBCSignalParser {
     /**
      * This class defines the parameters of a DBC signal.
      */
-    public static class DBCSignal {
+    public static class DBCSignal implements IDBCType {
         /**
          * The name of the signal.
          */
@@ -317,6 +317,11 @@ public class DBCSignalParser {
             fNumerical = numerical;
             fUnit = unit;
             fNodes = nodes;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
         }
     }
 }

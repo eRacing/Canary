@@ -28,7 +28,7 @@ final public class DBCNodesParser {
     /**
      * This class defines the DBC nodes.
      */
-    public static class DBCNodes {
+    public static class DBCNodes implements IDBCType {
         /**
          * This nodes in the database.
          */
@@ -41,6 +41,12 @@ final public class DBCNodesParser {
          */
         private DBCNodes(List<String> nodes) {
             fNodes = nodes;
+        }
+
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
         }
     }
 }

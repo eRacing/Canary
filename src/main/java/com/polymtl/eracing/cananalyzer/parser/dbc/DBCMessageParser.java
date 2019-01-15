@@ -39,7 +39,7 @@ public class DBCMessageParser {
     /**
      * This class defines a DBC message.
      */
-    public static class DBCMessage {
+    public static class DBCMessage implements IDBCType {
         /**
          * This ID of the message.
          */
@@ -80,6 +80,11 @@ public class DBCMessageParser {
             fLength = length;
             fNode = node;
             fSignals = signals;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
         }
     }
 }
