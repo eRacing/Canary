@@ -6,10 +6,13 @@
         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
     -fx-background-radius: 10;
     -fx-background-insets: 0,1,1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
     -fx-background-size: 40px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}
+
+.AssociateButton: hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 2, 0.0 , 0 , 1 );
 }
 
 .DisconnectButton {
@@ -20,11 +23,14 @@
         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
     -fx-background-radius: 10;
     -fx-background-insets: 0,1,1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
     -fx-background-size: 40px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 
+}
+
+.DisconnectButton: hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 2, 0.0 , 0 , 1 );
 }
 
 .graphButton {
@@ -35,11 +41,14 @@
         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
     -fx-background-radius: 10;
     -fx-background-insets: 0,1,1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
     -fx-background-size: 40px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 
+}
+
+.graphButton: hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 2, 0.0 , 0 , 1 );
 }
 
 .driverButton {
@@ -50,9 +59,12 @@
         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
     -fx-background-radius: 10;
     -fx-background-insets: 0,1,1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
     -fx-background-size: 40px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 
+}
+
+.driverButton: hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 2, 0.0 , 0 , 1 );
 }
