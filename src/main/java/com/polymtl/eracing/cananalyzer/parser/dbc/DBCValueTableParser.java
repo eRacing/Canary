@@ -43,7 +43,7 @@ final public class DBCValueTableParser {
     /**
      * This parser detects and returns a table of descriptions.
      */
-    public final static Parser<Dictionary<Integer, String>> PARSER = PARSER_PREFIX
+    public final static Parser<DBCValueTable> PARSER = PARSER_PREFIX
             .followedBy(CommonParser.SPACES)
             .next(DEFINITIONS)
             .map(l -> createDictionary(l));
@@ -54,9 +54,28 @@ final public class DBCValueTableParser {
      * @param values The list of integer/string tuple.
      * @return The resulting dictionary.
      */
-    private static Dictionary<Integer, String> createDictionary(List<Tuple<Integer, String>> values) {
+    private static DBCValueTable createDictionary(List<Tuple<Integer, String>> values) {
         Dictionary<Integer, String> dict = new Hashtable<>();
         values.stream().forEach(t -> dict.put(t.getFirst(), t.getSecond()));
-        return dict;
+        return new DBCValueTable(dict);
+    }
+
+    /**
+     * This class defines a DBC table of values.
+     */
+    public static class DBCValueTable {
+        /**
+         * The table of value.
+         */
+        public final Dictionary<Integer, String> fTable;
+
+        /**
+         * Constructor.
+         *
+         * @param table The table of value.
+         */
+        private DBCValueTable(Dictionary<Integer, String> table) {
+            fTable = table;
+        }
     }
 }
