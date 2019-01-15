@@ -1,5 +1,11 @@
 package sample.Message;
 
+
+/* Class Message is used for tests with the UI.
+* everything here is purely fictive.
+*
+* */
+
 public class Message {
 
     private double timeStamp;

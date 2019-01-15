@@ -65,13 +65,17 @@ public class MainGUIController implements Initializable {
     @FXML
     void DataBaseChecked(MouseEvent event) {
 
+        //TODO
+        /* - hide the treeView when unChecked, show otherwise*/
+
     }
 
     //View Menu
     @FXML
     void canMessageChecked(MouseEvent event) {
 
-
+        //TODO
+        /* - hide the tableView when unChecked, show otherwise*/
 
     }
 
@@ -87,6 +91,10 @@ public class MainGUIController implements Initializable {
 
     @FXML
     void associateButtonClicked(ActionEvent event) {
+
+        //TODO
+        /* - link the dataBase to the treeView
+        *  - update the tree view to show its structure*/
 
         //adds a navigator within the computer
         FileChooser fileChooser = new FileChooser();
