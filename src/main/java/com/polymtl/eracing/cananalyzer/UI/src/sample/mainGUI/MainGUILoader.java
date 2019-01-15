@@ -18,8 +18,8 @@ public class MainGUILoader extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/mainGUI/NewMain.fxml"));
-        primaryStage.setTitle("CANary");
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/mainGUI/mainGUI.fxml"));
+        primaryStage.setTitle("Canary");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }

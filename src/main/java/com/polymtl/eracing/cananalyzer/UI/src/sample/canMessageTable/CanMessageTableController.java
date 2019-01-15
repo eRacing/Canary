@@ -1,4 +1,4 @@
-package sample.listView;
+package sample.canMessageTable;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,10 +9,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Message.Message;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ListViewController implements Initializable{
+public class CanMessageTableController implements Initializable{
 
     private ObservableList<Message> messages;
 
@@ -47,17 +46,6 @@ public class ListViewController implements Initializable{
         //associates the columns to the attributes of Message, has to have the same name of attribute
         initColumns();
 
-        tableView.setItems(messages);
-
-
-
-        for(int i = 0; i < 10; i++){
-            addMessage(new Message(1, 0, ("message"+ i),"00 00 00 00", i, "tx"));
-
-        }
-
-
-
 
 
     }
@@ -69,6 +57,9 @@ public class ListViewController implements Initializable{
         messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
         DLCColumn.setCellValueFactory(new PropertyValueFactory<>("DLC"));
         byteColumn.setCellValueFactory(new PropertyValueFactory<>("bytes"));
+
+        //connect the list to the view
+        tableView.setItems(messages);
     }
 
     public void addMessage(Message message){
@@ -81,4 +72,4 @@ public class ListViewController implements Initializable{
     public void removeMessage(Message message){
         messages.remove(message);
     }
-}
+    }
