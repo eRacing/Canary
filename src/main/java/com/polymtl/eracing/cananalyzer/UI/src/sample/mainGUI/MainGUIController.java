@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MainGUIController {
 
     @FXML
-    private MenuItem newButton;
+    private MenuItem newButton, newChartButton;
 
     @FXML
     private TreeView<?> dataNavigator;
@@ -45,6 +45,11 @@ public class MainGUIController {
         stage.setScene(new Scene(root, chartView.getWidth(), chartView.getHeight()));
 
         stage.show();
+
+    }
+
+    @FXML
+    void startNewChart(ActionEvent event) {
 
     }
 

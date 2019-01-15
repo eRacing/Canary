@@ -23,7 +23,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Charts">
                <items>
-                  <MenuItem fx:id="newButton1" mnemonicParsing="false" onAction="#startNewVisualisation" text="new..." />
+                  <MenuItem fx:id="newChartButton" mnemonicParsing="false" onAction="#startNewChart" text="new..." />
                   <MenuItem mnemonicParsing="false" text="open..." />
                   <MenuItem mnemonicParsing="false" text="Close" />
                </items>
