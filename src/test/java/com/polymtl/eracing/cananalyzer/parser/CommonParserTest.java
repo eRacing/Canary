@@ -239,6 +239,28 @@ public class CommonParserTest {
             CommonParser.DOUBLE_QUOTED_STRING.parse("\"hello world");
             assertTrue(false);
         } catch (ParserException e) {
+
+        }
+    }
+
+    @Test
+    public void testFloat() {
+        Float number;
+
+        /* test a float */
+        number = CommonParser.FLOAT.parse("1.23333");
+        assertEquals(1.23333, number, DELTA);
+
+        /* test an integer */
+        number = CommonParser.FLOAT.parse("1");
+        assertEquals(1, number, DELTA);
+
+        /* test not a number */
+        try {
+            CommonParser.FLOAT.parse("asd");
+            assertTrue(false);
+        } catch (ParserException e) {
+
         }
     }
 }

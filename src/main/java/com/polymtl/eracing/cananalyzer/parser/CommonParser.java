@@ -80,6 +80,11 @@ public class CommonParser {
             .toScanner("signed integer").source().map(s -> Integer.parseInt(s));
 
     /**
+     * This parser detects and returns a floating point number.
+     */
+    public final static Parser<Float> FLOAT = Scanners.DECIMAL.map(s -> Float.parseFloat(s));
+
+    /**
      * This parser detects and returns number that can possibly be an integer or a floating point. If the content isn't
      * an integer number or a floating point number, the parser will fail before creating the Either object.
      *
