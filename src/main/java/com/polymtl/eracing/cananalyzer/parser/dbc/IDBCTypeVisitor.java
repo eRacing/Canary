@@ -3,6 +3,7 @@ package com.polymtl.eracing.cananalyzer.parser.dbc;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCMessageParser.DBCMessage;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCNodesParser.DBCNodes;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCSignalParser.DBCSignal;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCSpeedParser.DBCSpeed;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCValueTableParser.DBCValueTable;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCVersionParser.DBCVersion;
 
@@ -30,6 +31,13 @@ public interface IDBCTypeVisitor {
      * @param signal The DBC signal.
      */
     void visit(DBCSignal signal);
+
+    /**
+     * This method visits a DBC speed.
+     *
+     * @param speed The DBC speed.
+     */
+    void visit(DBCSpeed speed);
 
     /**
      * This method visits a DBC value table.
