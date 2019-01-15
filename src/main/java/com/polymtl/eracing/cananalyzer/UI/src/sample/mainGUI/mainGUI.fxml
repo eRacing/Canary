@@ -59,7 +59,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                          <ComboBox prefHeight="56.0" prefWidth="56.0" styleClass="driverButton" stylesheets="@style.css">
+                          <ComboBox fx:id="driverButton" prefHeight="56.0" prefWidth="56.0" styleClass="driverButton" stylesheets="@style.css">
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </HBox.margin>
