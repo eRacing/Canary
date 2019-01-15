@@ -4,5 +4,8 @@ out/
 # intellij unimportant files
 .idea/workspace.xml
 
-# gradle temporary folder
+# gradle temporary directory
 .gradle/
+
+# gradle build directory
+build/
