@@ -11,6 +11,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,6 +88,10 @@ public class MainGUIController implements Initializable {
     @FXML
     void associateButtonClicked(ActionEvent event) {
 
+        //adds a navigator within the computer
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.showOpenDialog(new Stage());
     }
 
 
