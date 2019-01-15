@@ -18,9 +18,35 @@ final public class DBCNodesParser {
     /**
      * This parser detects and returns the list of nodes.
      */
-    public final static Parser<List<String>> PARSER = PARSER_PREFIX
+    public final static Parser<DBCNodes> PARSER = PARSER_PREFIX
             .next(CommonParser.SPACES)
             .next(CommonParser.COLON)
             .next(CommonParser.SPACES)
-            .next(Scanners.IDENTIFIER.sepBy(CommonParser.SPACES));
+            .next(Scanners.IDENTIFIER.sepBy(CommonParser.SPACES))
+            .map(x -> new DBCNodes(x));
+
+    /**
+     * This class defines the DBC nodes.
+     */
+    public static class DBCNodes implements IDBCType {
+        /**
+         * This nodes in the database.
+         */
+        public final List<String> fNodes;
+
+        /**
+         * Constructor.
+         *
+         * @param nodes The nodes in the database.
+         */
+        private DBCNodes(List<String> nodes) {
+            fNodes = nodes;
+        }
+
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
 }

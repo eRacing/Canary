@@ -16,6 +16,31 @@ final public class DBCVersionParser {
     /**
      * This parser detects and returns the version.
      */
-    public final static Parser<String> PARSER = PARSER_PREFIX
-            .next(CommonParser.SPACES).next(CommonParser.DOUBLE_QUOTED_STRING);
+    public final static Parser<DBCVersion> PARSER = PARSER_PREFIX
+            .next(CommonParser.SPACES).next(CommonParser.DOUBLE_QUOTED_STRING)
+            .map(x -> new DBCVersion(x));
+
+    /**
+     * This class defines the version of the DBC database.
+     */
+    public static class DBCVersion implements IDBCType {
+        /**
+         * The version of the database.
+         */
+        public final String fVersion;
+
+        /**
+         * Construtor.
+         *
+         * @param version The version of the database.
+         */
+        private DBCVersion(String version) {
+            fVersion = version;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
 }

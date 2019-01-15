@@ -5,17 +5,17 @@ import com.polymtl.eracing.cananalyzer.functional.tuple.Tuple;
 import org.jparsec.error.ParserException;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.List;
 
 import static org.junit.Assert.*;
+
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCValueTableParser.DBCValueTable;
 
 public class DBCValueTableParserTest {
     @Test
     public void testValueTableParser() {
-        Dictionary<Integer, String> result;
+        DBCValueTable result;
 
         /* expected table */
         Dictionary<Integer, String> expected = new Hashtable<>();
@@ -25,11 +25,11 @@ public class DBCValueTableParserTest {
 
         /* simple case */
         result = DBCValueTableParser.PARSER.parse("VAL_TABLE_ 40 \"hello\" 1337 \"world\" 823 \"haskell\"");
-        assertEquals(expected, result);
+        assertEquals(expected, result.fTable);
 
         /* simple case with some spaces */
         result = DBCValueTableParser.PARSER.parse("VAL_TABLE_   40   \"hello\"   1337    \"world\"   823    \"haskell\"");
-        assertEquals(expected, result);
+        assertEquals(expected, result.fTable);
 
         /* invalid prefix */
         try {

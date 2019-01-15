@@ -8,10 +8,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCNodesParser.DBCNodes;
+
 public class DBCNodesParserTest {
     @Test
     public void testParser() {
-        List<String> nodes;
+        DBCNodes nodes;
 
         /* create the expected list of nodes */
         List<String> expected = new ArrayList<>();
@@ -21,23 +23,23 @@ public class DBCNodesParserTest {
 
         /* valid string */
         nodes = DBCNodesParser.PARSER.parse("BU_: DEBUG MOTOR SENSOR");
-        assertEquals(expected, nodes);
+        assertEquals(expected, nodes.fNodes);
 
         /* valid string */
         nodes = DBCNodesParser.PARSER.parse("BU_ : DEBUG MOTOR SENSOR");
-        assertEquals(expected, nodes);
+        assertEquals(expected, nodes.fNodes);
 
         /* valid string */
         nodes = DBCNodesParser.PARSER.parse("BU_  : DEBUG MOTOR SENSOR");
-        assertEquals(expected, nodes);
+        assertEquals(expected, nodes.fNodes);
 
         /* valid string */
         nodes = DBCNodesParser.PARSER.parse("BU_ :   DEBUG MOTOR SENSOR");
-        assertEquals(expected, nodes);
+        assertEquals(expected, nodes.fNodes);
 
         /* valid string */
         nodes = DBCNodesParser.PARSER.parse("BU_    :      DEBUG   MOTOR    SENSOR");
-        assertEquals(expected, nodes);
+        assertEquals(expected, nodes.fNodes);
 
         /* invalid prefix */
         try {
