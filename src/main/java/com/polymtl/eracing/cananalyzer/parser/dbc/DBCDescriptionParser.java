@@ -52,32 +52,32 @@ final public class DBCDescriptionParser {
      * This parser detects and returns a description for the database.
      */
     private final static Parser<DBCDescription> PARSER_DATABASE = CommonParser.SPACES.next(DOUBLE_QUOTED_STRING)
-            .map(s -> DBCDescription.databaseDescription(s));
+            .map(s -> new DBCDatabaseDescription(s));
 
     /**
      * This parser detects and returns a description for the database.
      */
-    private final static Parser<DBCDescription> PARSER_NODE = TYPE_NODE.next(Parsers.sequence(
+    private final static Parser<DBCNodeDescription> PARSER_NODE = TYPE_NODE.next(Parsers.sequence(
             CommonParser.SPACES.next(Scanners.IDENTIFIER),
             CommonParser.SPACES.next(DOUBLE_QUOTED_STRING),
-            (x1, x2) -> DBCDescription.nodeDescription(x1, x2)));
+            (name, desc) -> new DBCNodeDescription(desc, name)));
 
     /**
      * This parser detects and returns a description for a message.
      */
-    private final static Parser<DBCDescription> PARSER_MESSAGE = TYPE_MESSAGE.next(Parsers.sequence(
-            CommonParser.SPACES.next(CommonParser.INTEGER),
+    private final static Parser<DBCMessageDescription> PARSER_MESSAGE = TYPE_MESSAGE.next(Parsers.sequence(
+            CommonParser.SPACES.next(CommonParser.UNSIGNED_INTEGER),
             CommonParser.SPACES.next(DOUBLE_QUOTED_STRING),
-            (x1, x2) -> DBCDescription.messageDescription(x1, x2)));
+            (id, desc) -> new DBCMessageDescription(desc, id)));
 
     /**
      * This parser detects and returns a description for a signal.
      */
-    private final static Parser<DBCDescription> PARSER_SIGNAL = TYPE_SIGNAL.next(Parsers.sequence(
-            CommonParser.SPACES.next(CommonParser.INTEGER),
+    private final static Parser<DBCSignalDescription> PARSER_SIGNAL = TYPE_SIGNAL.next(Parsers.sequence(
+            CommonParser.SPACES.next(CommonParser.UNSIGNED_INTEGER),
             CommonParser.SPACES.next(Scanners.IDENTIFIER),
             CommonParser.SPACES.next(DOUBLE_QUOTED_STRING),
-            (x1, x2, x3) -> DBCDescription.signalDescription(x1, x2, x3)));
+            (id, name, desc) -> new DBCSignalDescription(desc, id, name)));
 
     /**
      * This parser detects and returns the right description object.
@@ -85,4 +85,71 @@ final public class DBCDescriptionParser {
     public final static Parser<DBCDescription> PARSER = PARSER_PREFIX
             .next(CommonParser.SPACES)
             .next(Parsers.or(PARSER_SIGNAL, PARSER_MESSAGE, PARSER_NODE, PARSER_DATABASE));
+
+    ///////////////////////
+    // Generated Objects //
+    ///////////////////////
+
+    public static abstract class DBCDescription implements IDBCType {
+        public final String fDescription;
+
+        private DBCDescription(String description) {
+            fDescription = description;
+        }
+    }
+
+    public static class DBCDatabaseDescription extends DBCDescription implements IDBCType {
+        private DBCDatabaseDescription(String description) {
+            super(description);
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
+
+    public static class DBCNodeDescription extends DBCDescription implements IDBCType {
+        public final String fNode;
+
+        private DBCNodeDescription(String description, String node) {
+            super(description);
+            fNode = node;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
+
+    public static class DBCMessageDescription extends DBCDescription implements IDBCType {
+        public final Integer fMessage;
+
+        private DBCMessageDescription(String description, Integer message) {
+            super(description);
+            fMessage = message;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
+
+    public static class DBCSignalDescription extends DBCDescription implements IDBCType {
+        public final Integer fMessage;
+        public final String fSignal;
+
+        private DBCSignalDescription(String description, Integer message, String signal) {
+            super(description);
+            fMessage = message;
+            fSignal = signal;
+        }
+
+        @Override
+        public void accept(IDBCTypeVisitor visitor) {
+            visitor.visit(this);
+        }
+    }
 }
