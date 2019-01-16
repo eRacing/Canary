@@ -5,26 +5,29 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCDatabaseDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCNodeDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCMessageDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCSignalDescription;
+
 public class DBCDescriptionParserTest {
     @Test
     public void testDatabaseDescription() {
-        DBCDescription description;
+        DBCDescription obj;
+        DBCDatabaseDescription description;
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_ \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.DATABASE);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), null);
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_ \"test description\"");
+        assertTrue(obj instanceof DBCDatabaseDescription);
+        description = (DBCDatabaseDescription) obj;
+        assertEquals(description.fDescription, "test description");
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_      \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.DATABASE);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), null);
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_      \"test description\"");
+        assertTrue(obj instanceof DBCDatabaseDescription);
+        description = (DBCDatabaseDescription) obj;
+        assertEquals(description.fDescription, "test description");
 
         /* invalid input */
         try {
@@ -50,23 +53,22 @@ public class DBCDescriptionParserTest {
 
     @Test
     public void testNodeDescription() {
-        DBCDescription description;
+        DBCDescription obj;
+        DBCNodeDescription description;
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_ BU_ NODE_NAME \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.NODE);
-        assertEquals(description.getNodeName(), "NODE_NAME");
-        assertEquals(description.getMessageID(), null);
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_ BU_ NODE_NAME \"test description\"");
+        assertTrue(obj instanceof DBCNodeDescription);
+        description = (DBCNodeDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fNode, "NODE_NAME");
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_    BU_  NODE_NAME   \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.NODE);
-        assertEquals(description.getNodeName(), "NODE_NAME");
-        assertEquals(description.getMessageID(), null);
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_    BU_  NODE_NAME   \"test description\"");
+        assertTrue(obj instanceof DBCNodeDescription);
+        description = (DBCNodeDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fNode, "NODE_NAME");
 
         /* invalid input */
         try {
@@ -99,23 +101,22 @@ public class DBCDescriptionParserTest {
 
     @Test
     public void testMessageDescription() {
-        DBCDescription description;
+        DBCDescription obj;
+        DBCMessageDescription description;
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_ BO_ 1337 \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.MESSAGE);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), new Integer(1337));
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_ BO_ 1337 \"test description\"");
+        assertTrue(obj instanceof DBCMessageDescription);
+        description = (DBCMessageDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fMessage, new Integer(1337));
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_    BO_  1337   \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.MESSAGE);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), new Integer(1337));
-        assertEquals(description.getSignalName(), null);
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_    BO_  1337   \"test description\"");
+        assertTrue(obj instanceof DBCMessageDescription);
+        description = (DBCMessageDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fMessage, new Integer(1337));
 
         /* invalid input */
         try {
@@ -148,23 +149,24 @@ public class DBCDescriptionParserTest {
 
     @Test
     public void testSignalDescription() {
-        DBCDescription description;
+        DBCDescription obj;
+        DBCSignalDescription description;
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_ SG_ 1337 SIGNAL_NAME \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.SIGNAL);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), new Integer(1337));
-        assertEquals(description.getSignalName(), "SIGNAL_NAME");
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_ SG_ 1337 SIGNAL_NAME \"test description\"");
+        assertTrue(obj instanceof DBCSignalDescription);
+        description = (DBCSignalDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fMessage, new Integer(1337));
+        assertEquals(description.fSignal, "SIGNAL_NAME");
 
         /* valid input */
-        description = DBCDescriptionParser.PARSER.parse("CM_    SG_  1337   SIGNAL_NAME  \"test description\"");
-        assertEquals(description.getType(), DBCDescription.DescriptionType.SIGNAL);
-        assertEquals(description.getNodeName(), null);
-        assertEquals(description.getMessageID(), new Integer(1337));
-        assertEquals(description.getSignalName(), "SIGNAL_NAME");
-        assertEquals(description.getDescription(), "test description");
+        obj = DBCDescriptionParser.PARSER.parse("CM_    SG_  1337   SIGNAL_NAME  \"test description\"");
+        assertTrue(obj instanceof DBCSignalDescription);
+        description = (DBCSignalDescription) obj;
+        assertEquals(description.fDescription, "test description");
+        assertEquals(description.fMessage, new Integer(1337));
+        assertEquals(description.fSignal, "SIGNAL_NAME");
 
         /* invalid input */
         try {
