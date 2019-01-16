@@ -1,5 +1,9 @@
 package com.polymtl.eracing.cananalyzer.parser.dbc;
 
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCDatabaseDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCNodeDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCMessageDescription;
+import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCDescriptionParser.DBCSignalDescription;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCMessageParser.DBCMessage;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCNodesParser.DBCNodes;
 import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCSignalParser.DBCSignal;
@@ -11,6 +15,34 @@ import static com.polymtl.eracing.cananalyzer.parser.dbc.DBCVersionParser.DBCVer
  * This interface defines a visitor for visiting the various DBC type.
  */
 public interface IDBCTypeVisitor {
+    /**
+     * This method visits a DBC database description.
+     *
+     * @param description The DBC database description to visit.
+     */
+    void visit(DBCDatabaseDescription description);
+
+    /**
+     * This method visits a DBC node description.
+     *
+     * @param description The DBC node description to visit.
+     */
+    void visit(DBCNodeDescription description);
+
+    /**
+     * This method visits a DBC message description.
+     *
+     * @param description The DBC message description to visit.
+     */
+    void visit(DBCMessageDescription description);
+
+    /**
+     * This method visits a DBC signal description.
+     *
+     * @param description The DBC signal description to visit.
+     */
+    void visit(DBCSignalDescription description);
+
     /**
      * This method visits a DBC message.
      *
