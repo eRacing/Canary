@@ -24,21 +24,30 @@ public class DBCValueTableParserTest {
         expected.put(823, "haskell");
 
         /* simple case */
-        result = DBCValueTableParser.PARSER.parse("VAL_TABLE_ 40 \"hello\" 1337 \"world\" 823 \"haskell\"");
+        result = DBCValueTableParser.PARSER.parse("VAL_TABLE_ TABLE_NAME 40 \"hello\" 1337 \"world\" 823 \"haskell\"");
+        assertEquals("TABLE_NAME", result.fName);
         assertEquals(expected, result.fTable);
 
         /* simple case with some spaces */
-        result = DBCValueTableParser.PARSER.parse("VAL_TABLE_   40   \"hello\"   1337    \"world\"   823    \"haskell\"");
+        result = DBCValueTableParser.PARSER.parse("VAL_TABLE_  TABLE_NAME    40   \"hello\"   1337    \"world\"   823    \"haskell\"");
+        assertEquals("TABLE_NAME", result.fName);
         assertEquals(expected, result.fTable);
 
         /* invalid prefix */
         try {
-            DBCValueTableParser.PARSER.parse("VAL_TABLE 40 \"hello\" 1337 \"world\" 823 \"haskell\"");
+            DBCValueTableParser.PARSER.parse("VAL_TABLE TABLE_NAME 40 \"hello\" 1337 \"world\" 823 \"haskell\"");
             assertTrue(false);
         } catch (ParserException e) {
         }
         
         /* missing quote */
+        try {
+            DBCValueTableParser.PARSER.parse("VAL_TABLE_ TABLE_NAME 40 \"hello 1337 \"world\" 823 \"haskell\"");
+            assertTrue(false);
+        } catch (ParserException e) {
+        }
+
+        /* missing name */
         try {
             DBCValueTableParser.PARSER.parse("VAL_TABLE_ 40 \"hello 1337 \"world\" 823 \"haskell\"");
             assertTrue(false);

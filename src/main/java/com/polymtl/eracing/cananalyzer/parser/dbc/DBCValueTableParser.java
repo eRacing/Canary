@@ -14,7 +14,7 @@ import java.util.List;
  * This class contains a parser for parsing a table of description.
  * <p><p>
  * The following line contains two elements in the table
- * <pre><code>VAL_TABLE_ 1337 "description 1" 420 "description 2"</code></pre>
+ * <pre><code>VAL_TABLE_ TABLE_NAME 1337 "description 1" 420 "description 2"</code></pre>
  */
 final public class DBCValueTableParser {
     /**
@@ -43,10 +43,10 @@ final public class DBCValueTableParser {
     /**
      * This parser detects and returns a table of descriptions.
      */
-    public final static Parser<DBCValueTable> PARSER = PARSER_PREFIX
-            .followedBy(CommonParser.SPACES)
-            .next(DEFINITIONS)
-            .map(l -> createDictionary(l));
+    public final static Parser<DBCValueTable> PARSER = Parsers.sequence(
+            PARSER_PREFIX, CommonParser.SPACES, Scanners.IDENTIFIER, CommonParser.SPACES, DEFINITIONS
+            , (x1, x2, x3, x4, x5) -> new DBCValueTable(x3, createDictionary(x5))
+    );
 
     /**
      * This method convert the list of tuple into a dictionary.
@@ -54,16 +54,21 @@ final public class DBCValueTableParser {
      * @param values The list of integer/string tuple.
      * @return The resulting dictionary.
      */
-    private static DBCValueTable createDictionary(List<Tuple<Integer, String>> values) {
+    private static Dictionary<Integer, String> createDictionary(List<Tuple<Integer, String>> values) {
         Dictionary<Integer, String> dict = new Hashtable<>();
         values.stream().forEach(t -> dict.put(t.getFirst(), t.getSecond()));
-        return new DBCValueTable(dict);
+        return dict;
     }
 
     /**
      * This class defines a DBC table of values.
      */
     public static class DBCValueTable implements IDBCType {
+        /**
+         * The name of the table.
+         */
+        public final String fName;
+
         /**
          * The table of value.
          */
@@ -74,7 +79,8 @@ final public class DBCValueTableParser {
          *
          * @param table The table of value.
          */
-        private DBCValueTable(Dictionary<Integer, String> table) {
+        private DBCValueTable(String name, Dictionary<Integer, String> table) {
+            fName = name;
             fTable = table;
         }
 
