@@ -1,4 +1,4 @@
-package sample.mainGUI;
+package com.polymtl.eracing.cananalyzer.UI.src.sample.mainGUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ public class MainGUILoader extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/mainGUI/mainGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/mainGUI.fxml"));
         primaryStage.setTitle("Canary");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();

@@ -1,4 +1,4 @@
-package sample.mainGUI;
+package com.polymtl.eracing.cananalyzer.UI.src.sample.mainGUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

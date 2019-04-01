@@ -1,5 +1,6 @@
-package sample.canMessageTable;
+package com.polymtl.eracing.cananalyzer.UI.src.sample.canMessageTable;
 
+import com.polymtl.eracing.cananalyzer.UI.src.sample.Message.Message;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import sample.Message.Message;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -1,4 +1,4 @@
-package sample.chartView;
+package com.polymtl.eracing.cananalyzer.UI.src.sample.chartView;
 
 import javafx.fxml.Initializable;
 

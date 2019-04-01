@@ -1,4 +1,4 @@
-package sample.Message;
+package com.polymtl.eracing.cananalyzer.UI.src.sample.Message;
 
 
 /* Class Message is used for tests with the UI.
