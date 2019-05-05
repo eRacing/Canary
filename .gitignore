@@ -1,8 +1,13 @@
 # intellij build directory
 out/
 
-# intellij unimportant files
-.idea/workspace.xml
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
 
 # gradle temporary directory
 .gradle/

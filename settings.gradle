@@ -1,4 +1,3 @@
-rootProject.name = 'cananalyzer'
-rootProject.name = 'cananalyzer'
-rootProject.name = 'cananalyzer'
+rootProject.name = 'canary'
 
+include "desktop-ui", "core"
