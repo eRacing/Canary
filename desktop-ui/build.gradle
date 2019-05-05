@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
+    //id 'org.beryx.jlink' version '2.9.4'
 }
 
 version '1.0-SNAPSHOT'
@@ -9,6 +11,14 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
+javafx {
+    version = "12"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+//mainClassName = "$moduleName/org.openjfx.MainApp"
+//mainClassName = "$moduleName/org.openjfx.MainApp"
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
