@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.polymtl.eracing.canary.desktop.ui.mainGUI.MainGUIController">
+    <top>
+        <VBox prefHeight="85.0" prefWidth="670.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu fx:id="viewMenu" mnemonicParsing="false" text="View">
+                            <items>
+                                <CheckMenuItem mnemonicParsing="false" onAction="#DataBaseChecked" text="Database Viewer" />
+                                <CheckMenuItem mnemonicParsing="false" onAction="#canMessageChecked" text="CAN messages" />
+                            </items>
+                        </Menu>
+                        <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Tools" />
+                    </menus>
+                </MenuBar>
+                <HBox prefHeight="60.0" prefWidth="670.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#associateButtonClicked" prefHeight="56.0" prefWidth="56.0" styleClass="AssociateButton" stylesheets="@style.css">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="2.0" right="1.0" top="1.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Add a database" />
+                     </tooltip></Button>
+                        <Button mnemonicParsing="false" onAction="#disconnectButtonPressed" prefHeight="56.0" prefWidth="56.0" styleClass="DisconnectButton" stylesheets="@style.css">
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Disconnect" />
+                     </tooltip></Button>
+                        <Button mnemonicParsing="false" onAction="#graphButtonPressed" prefHeight="56.0" prefWidth="56.0" styleClass="graphButton" stylesheets="@style.css">
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="New signal graph" />
+                     </tooltip></Button>
+                          <ComboBox fx:id="driverButton" prefHeight="56.0" prefWidth="56.0" styleClass="driverButton" stylesheets="@style.css">
+                     <HBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="Select a driver" />
+                     </tooltip></ComboBox>
+
+                    </children>
+                </HBox>
+            <SplitPane orientation="VERTICAL" prefHeight="4.0" prefWidth="670.0" />
+            </children>
+        </VBox>
+    </top>
+    <bottom>
+        <TextArea fx:id="statusBar" opacity="0.7" prefHeight="5.0" prefWidth="670.0" text="empty status bar" BorderPane.alignment="CENTER" />
+    </bottom>
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <TitledPane accessibleRole="PARENT" animated="false" layoutX="-1.0" onMouseClicked="#DataBaseChecked" prefHeight="334.0" prefWidth="208.0" text="data Base" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <TreeView prefHeight="200.0" prefWidth="200.0">
+                            <contextMenu>
+                                <ContextMenu fx:id="dataBaseContextMenu">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#associateButtonClicked" text="associate a data base..." />
+                                    </items>
+                                </ContextMenu>
+                            </contextMenu>
+                        </TreeView>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane fx:id="graphCanva" prefHeight="344.0" prefWidth="476.0" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
