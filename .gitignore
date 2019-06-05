@@ -4,3 +4,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+
+\.gradle/
+
+desktop/build/
+
+desktop/out/
