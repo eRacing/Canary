@@ -1,5 +1,5 @@
 .AssociateButton {
-    -fx-background-image: url('../../icons/associateIcon.png');
+    -fx-background-image: url('/icons/associateIcon.png');
     -fx-background-color:
         #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),
@@ -16,7 +16,7 @@
 }
 
 .DisconnectButton {
-    -fx-background-image: url('../../icons/disconnectIcon.png');
+    -fx-background-image: url('/icons/disconnectIcon.png');
     -fx-background-color:
         #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),
@@ -34,7 +34,7 @@
 }
 
 .graphButton {
-    -fx-background-image: url('../../icons/graph_Icon.png');
+    -fx-background-image: url('/icons/graph_Icon.png');
     -fx-background-color:
         #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),
@@ -52,7 +52,7 @@
 }
 
 .driverButton {
-    -fx-background-image: url('../../icons/usb_Icon.png');
+    -fx-background-image: url('/icons/usb_Icon.png');
     -fx-background-color:
         #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),

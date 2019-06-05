@@ -17,9 +17,6 @@ public class MainGUILoader extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        System.out.println("CLASS IS:");
-        System.out.println(getClass().getResource("mainGUI.fxml"));
-
         Parent root = FXMLLoader.load(getClass().getResource("mainGUI.fxml"));
         primaryStage.setTitle("Canary");
         primaryStage.setScene(new Scene(root, 800, 500));
