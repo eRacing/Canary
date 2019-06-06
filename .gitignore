@@ -5,7 +5,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
-.gradle/*
+.gradle/
 
 desktop/build/
 
